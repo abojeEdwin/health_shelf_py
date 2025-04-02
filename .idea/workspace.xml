@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="138ef8ad-75df-464b-8f4c-8ddc5f93245a" name="Changes" comment="" />
+    <list default="true" id="4d88ffe6-0543-4b28-94e0-f19e17c9b41f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/healthShelf.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/data/models/appointment.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/data/models/appointment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/data/models/gender.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/data/models/gender.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/data/models/speciality.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/data/models/speciality.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/data/models/users/doctors/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/data/models/users/doctors/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/data/models/users/doctors/doctor.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/data/models/users/doctors/doctor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/data/models/users/doctors/doctor_profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/data/models/users/doctors/doctor_profile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/data/models/users/doctors/medical_history.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/data/models/users/doctors/medical_history.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/data/models/users/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/data/models/users/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/data/models/users/user_profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/data/models/users/user_profile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/app.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,23 +29,42 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
-  <component name="ProjectId" id="2v8NInnjGjRLqzEaR3z2d3Nrfzm" />
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;abojeEdwin&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/abojeEdwin/health_shelf_py.git&quot;,
+    &quot;accountId&quot;: &quot;6447353b-24ba-4dde-9def-180c2516e309&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2vAis6uCFGxSHu4hBXGI7bRG1NM" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/omachoko/health_shelf_py&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -38,13 +76,17 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="138ef8ad-75df-464b-8f4c-8ddc5f93245a" name="Changes" comment="" />
-      <created>1743522665826</created>
+      <changelist id="4d88ffe6-0543-4b28-94e0-f19e17c9b41f" name="Changes" comment="" />
+      <created>1743594486160</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1743522665826</updated>
-      <workItem from="1743522668691" duration="24000" />
+      <updated>1743594486160</updated>
+      <workItem from="1743594491138" duration="2174000" />
+      <workItem from="1743597273303" duration="71000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
