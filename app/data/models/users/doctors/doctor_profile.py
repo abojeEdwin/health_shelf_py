@@ -1,6 +1,4 @@
 from dataclasses import dataclass
-from pymongo import MongoClient
-
 from app.data.models.gender import Gender
 from app.data.models.speciality import Speciality
 
@@ -15,6 +13,3 @@ class Doctor_Profile:
     phone_number : str = None
     address : str = None
 
-    client = MongoClient("mongodb://localhost:27017")
-    db = client.test_database
-    collection = db.doctors_profile
