@@ -4,6 +4,7 @@ from bson import ObjectId
 from pymongo import MongoClient
 from app.data.models.users.user import User
 from migrations.doctor_data_base import db
+import bcrypt
 
 
 def repository(cls):
@@ -30,7 +31,7 @@ class UserRepository(ABC):
         user_dict = {
             "user_name": user.user_name,
             "email": user.email,
-            "password": user.pass_word,
+            "password": cls.hash_password(user.pass_word),
             "user_profile": {
                 "first_name": user.user_profile.first_name,
                 "last_name": user.user_profile.last_name,
@@ -82,6 +83,30 @@ class UserRepository(ABC):
         result = db.users.delete_many({"_id": {"$in": users_ids}})
         return result.deleted_count > 0
 
+    @classmethod
+    def update(cls, user : User, id) -> bool:
+        user_dict = {
+            "user_name": user.user_name,
+            "email": user.email,
+            "password": cls.hash_password(user.pass_word),
+            "user_profile": {
+                "first_name": user.user_profile.first_name,
+                "last_name": user.user_profile.last_name,
+                "age": user.user_profile.age,
+                "gender": user.user_profile.gender.value,
+                "phone_number": user.user_profile.phone_number,
+                "address": user.user_profile.address,
+            }
+        }
+        result = db.users.update_one({"_id": ObjectId(id)}, {"$set": user_dict})
+        return result.modified_count > 0
+
+    @classmethod
+    def hash_password(cls, password):
+        if isinstance(password, str):
+            password = password.encode('utf-8')
+        hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
+        return hashed_password
 
 
 
