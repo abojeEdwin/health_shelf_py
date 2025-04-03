@@ -197,7 +197,7 @@ class TestUserRepository(unittest.TestCase):
         user.user_profile.address = "Lagos"
         user.user_profile.age = "39"
         user.user_profile.phone_number = "+555555555"
-        result = UserRepository.save(user)
+        UserRepository.save(user)
         self.assertFalse(UserRepository.exist_by_email("abojeedwi@gmail.com"))
         UserRepository.update(user, user.id)
         assert UserRepository.count_documents() == 1

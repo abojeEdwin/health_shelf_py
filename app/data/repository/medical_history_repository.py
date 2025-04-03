@@ -1,7 +1,10 @@
 from abc import ABC, abstractmethod
 from importlib.metadata import pass_none
 
+from bson import ObjectId
 from pymongo import MongoClient
+
+from app.data.models import medical_history
 from app.data.models.medical_history import Medical_History
 from migrations.medical_history_database import db
 import bcrypt
@@ -26,6 +29,7 @@ class MedicalHistoryRepository(ABC):
     @classmethod
     def save(cls, medical_history : Medical_History) -> Medical_History:
         medical_history_dict = {
+            "medical_history_details": medical_history.medical_history_details,
             "user_name" : medical_history.patient.user_name,
             "email" : medical_history.patient.email,
             "password" : cls.hash_password(medical_history.patient.pass_word),
@@ -54,7 +58,7 @@ class MedicalHistoryRepository(ABC):
             }
             }
         }
-        inserted_id = db.doctors.insert_one(medical_history_dict).inserted_id
+        inserted_id = db.medical_history.insert_one(medical_history_dict).inserted_id
         medical_history.id = inserted_id
         return medical_history
 
@@ -66,4 +70,56 @@ class MedicalHistoryRepository(ABC):
         hashed_password = bcrypt.hashpw(pass_word, bcrypt.gensalt())
         return hashed_password
 
+    @classmethod
+    def update(cls, medical_history: Medical_History, id: str) -> bool:
+        update_data = {
+            "medical_history_details": medical_history.medical_history_details,
+            "patient": {
+                "user_name": medical_history.patient.user_name,
+                "email": medical_history.patient.email,
+                "pass_word": cls.hash_password(medical_history.patient.pass_word),
+                "user_profile": {
+                    "first_name": medical_history.patient.user_profile.first_name,
+                    "last_name": medical_history.patient.user_profile.last_name,
+                    "gender": medical_history.patient.user_profile.gender.value,
+                    "address": medical_history.patient.user_profile.address,
+                    "age": medical_history.patient.user_profile.age,
+                    "phone_number": medical_history.patient.user_profile.phone_number
+                }
+            },
+            "doctor": {
+                "user_name": medical_history.doctor.user_name,
+                "email": medical_history.doctor.email,
+                "password": cls.hash_password(medical_history.doctor.password),
+                "doctor_profile": {
+                    "first_name": medical_history.doctor.doctor_profile.first_name,
+                    "last_name": medical_history.doctor.doctor_profile.last_name,
+                    "gender": medical_history.doctor.doctor_profile.gender.value,
+                    "address": medical_history.doctor.doctor_profile.address,
+                    "age": medical_history.doctor.doctor_profile.age,
+                    "phone_number": medical_history.doctor.doctor_profile.phone_number,
+                    "specialty": {
+                        "specialty": medical_history.doctor.doctor_profile.specialty.specialty
+                    }
+                }
+            }
+        }
+        try:
+            result = db.medical_history.update_one(
+                {"_id": ObjectId(id)},
+                {"$set": update_data}
+            )
+            return result.modified_count == 1
+        except Exception as e:
+            print(f"Update failed: {str(e)}")
+            return False
+
+    @classmethod
+    def find_by_id(cls, id) -> Medical_History:
+        result = db.medical_history.find_one({"_id": ObjectId(id)})
+        if result:
+            medical_history = Medical_History()
+            medical_history.id = result["_id"]
+            return medical_history
+        return None
 

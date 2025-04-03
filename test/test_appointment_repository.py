@@ -106,8 +106,8 @@ class TestAppointmentRepository(unittest.TestCase):
         appointment.doctor.doctor_profile.address = "Abuja"
         appointment.doctor.doctor_profile.gender = Gender.MALE
         appointment.appointment_details = " You have Corona Virus"
-        appointment.local_time = datetime.now()
         AppointmentRepository.save(appointment)
+
         appointment1 = Appointment()
         appointment1.patient = User()
         appointment1.patient.first_name = "mandaline"
@@ -131,7 +131,7 @@ class TestAppointmentRepository(unittest.TestCase):
         appointment1.doctor.doctor_profile.address = "Lagos"
         appointment1.doctor.doctor_profile.gender = Gender.MALE
         appointment1.appointment_details = " You need to treat malaria"
-        result = AppointmentRepository.update(appointment1)
+        AppointmentRepository.update(appointment1)
         assert AppointmentRepository.count_documents() == 1
 
 

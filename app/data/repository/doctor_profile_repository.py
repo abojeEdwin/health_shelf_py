@@ -73,7 +73,7 @@ class DoctorRepository(ABC):
                 }
             }
         }
-        result = db.users.update_one(
+        result = db.doctors.update_one(
             {"_id": ObjectId(id)},
             {"$set": doctor_dict}
         )
