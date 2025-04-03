@@ -10,3 +10,5 @@ class Appointment:
     doctor : Doctor = None
     appointment_details : str = None
     local_time : datetime.datetime.now() = None
+
+
