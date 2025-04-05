@@ -115,3 +115,33 @@ class DoctorRepository(ABC):
             password = password.encode('utf-8')
         hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
         return hashed_password
+
+    @classmethod
+    def delete_all(cls):
+        return db.doctors.delete_many({})
+
+
+    @classmethod
+    def find_by_email(cls, email: str) -> Doctor:
+        doctor = db.doctors.find_one({"email":email})
+        return doctor
+
+    @classmethod
+    def verify_password(cls, hashed_password: str, input_password: str) -> bool:
+
+        if not hashed_password or not input_password:
+            return False
+        try:
+            if isinstance(hashed_password, str):
+                hashed_password_bytes = hashed_password.encode('utf-8')
+            else:
+                hashed_password_bytes = hashed_password
+            if isinstance(input_password, str):
+                input_password_bytes = input_password.encode('utf-8')
+            else:
+                input_password_bytes = input_password
+            return bcrypt.checkpw(input_password_bytes, hashed_password_bytes)
+
+        except (ValueError, TypeError, AttributeError) as e:
+            return False
+

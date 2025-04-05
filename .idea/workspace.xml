@@ -50,45 +50,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.Python tests for test_appointment_repository.TestAppointmentRepository.executor": "Run",
-    "Python tests.Python tests for test_appointment_repository.TestAppointmentRepository.test_create_and_save_appointment.executor": "Run",
-    "Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.executor": "Run",
-    "Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_delete_doctor_by_id.executor": "Run",
-    "Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_delete_doctor_profile.executor": "Run",
-    "Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_delete_doctors_by_id.executor": "Run",
-    "Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_doctor_exists_by_id.executor": "Run",
-    "Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_doctor_update_doctor_profile.executor": "Run",
-    "Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_find_doctor_by_email.executor": "Run",
-    "Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_find_doctor_by_user_name.executor": "Run",
-    "Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_find_doctor_by_username.executor": "Run",
-    "Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_save_doctor_profile.executor": "Run",
-    "Python tests.Python tests for test_user_profile_repository.TestUserRepository.executor": "Run",
-    "Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_counts_of_users.executor": "Run",
-    "Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_create_user.executor": "Run",
-    "Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_delete_user.executor": "Run",
-    "Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_delete_user_by_id.executor": "Run",
-    "Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_delete_users_by_id.executor": "Run",
-    "Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_find_user_by_id.executor": "Run",
-    "Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_update_user_by_id.executor": "Run",
-    "Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_user_exists_by_email.executor": "Run",
-    "Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_user_exists_by_user_name.executor": "Run",
-    "Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_user_exists_by_username.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "edwinBranch",
-    "last_opened_file_path": "/home/omachoko/health_shelf_py/test",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests for test_appointment_repository.TestAppointmentRepository.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_appointment_repository.TestAppointmentRepository.test_create_and_save_appointment.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_delete_doctor_by_id.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_delete_doctor_profile.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_delete_doctors_by_id.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_doctor_exists_by_id.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_doctor_update_doctor_profile.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_find_doctor_by_email.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_find_doctor_by_user_name.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_find_doctor_by_username.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_save_doctor_profile.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_profile_repository.TestUserRepository.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_counts_of_users.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_create_user.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_delete_user.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_delete_user_by_id.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_delete_users_by_id.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_find_user_by_id.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_update_user_by_id.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_user_exists_by_email.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_user_exists_by_user_name.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_user_exists_by_username.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;edwinBranch&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/omachoko/health_shelf_py/test&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/data/models" />

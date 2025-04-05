@@ -1,6 +1,4 @@
 from app.data.models.medical_history import Medical_History
-from app.data.models.users.doctors.doctor import Doctor
-from app.data.models.users.user import User
 from dataclasses import dataclass
 
 
