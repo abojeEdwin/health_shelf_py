@@ -305,6 +305,28 @@ class TestUserService(unittest.TestCase):
         appointment = UserService.get_appointment(result.id)
         assert appointment is not None
 
+    def test_find_all_doctors(self):
+        request = User_Registration_Request()
+        request.user = User()
+        request.user.user_name = "mad mike"
+        request.user.pass_word = "password"
+        request.user.email = "email@gmail.com"
+        request.user.user_profile = User_Profile()
+        request.user.user_profile.first_name = "micheal"
+        request.user.user_profile.last_name = "sam"
+        request.user.user_profile.gender = Gender.MALE
+        request.user.user_profile.address = "123 Main St"
+        request.user.user_profile.age = "30"
+        request.user.user_profile.phone_number = "+1234567890"
+        result = UserService.register(request)
+        assert result.id is not None
+        login_request = User_Login_Request()
+        login_request.email = "email@gmail.com"
+        login_request.password = "password"
+        result2 = UserService.login(login_request)
+        assert result2["email"] == "email@gmail.com"
+
+
 
 
 

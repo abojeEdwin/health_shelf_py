@@ -97,12 +97,17 @@ class DoctorRepository(ABC):
         return result
 
     @classmethod
+    def find_all(cls):
+        return db.doctors.count_documents({})
+
+    @classmethod
     def exists_by_id(cls, id) -> bool:
         return db.doctors.find_one({"_id": id})
 
     @classmethod
     def delete_by_id(cls, id) -> bool :
         return db.doctors.delete_many({"_id": ObjectId(id)})
+        return result.deleted_count > 0
 
     @classmethod
     def delete_doctors_by_id(cls, doctors_ids) -> List[Doctor]:
