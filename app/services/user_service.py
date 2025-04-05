@@ -1,7 +1,6 @@
-from typing import Union, List
-
-import bcrypt
-
+from typing import Union, List, Optional
+from bson import ObjectId
+from app.data.models.appointment import Appointment
 from app.data.models.users import user
 from app.data.models.users.user import User
 from app.data.models.users.user_profile import User_Profile
@@ -12,6 +11,7 @@ from app.data.repository.medical_history_repository import MedicalHistoryReposit
 from app.exceptions.duplicate_email_exception import Duplicate_Email_Exception
 from app.exceptions.duplicate_username_exception import Duplicate_Username_Exception
 from app.exceptions.invalid_password_exception import Invalid_Password_Exception
+from app.services.Dto.appointment_request import User_Appointment_Request
 from app.services.Dto.user_login_request import User_Login_Request
 from app.services.Dto.user_registration_request import User_Registration_Request
 from app.exceptions.user_not_found_exception import User_Not_Found_Exception
@@ -72,3 +72,18 @@ class UserService:
                 raise Invalid_Password_Exception("invalid password")
 
             return user_login_details
+
+    @classmethod
+    def create_appointment(cls, request : User_Appointment_Request) -> Appointment:
+        patient = UserRepository.find_by_id(request.appointment.patient.id)
+        doctor = DoctorRepository.find_by_id(request.appointment.doctor.id)
+        return AppointmentRepository.save(request.appointment)
+
+    @classmethod
+    def find_all_appointments(cls)-> List[Appointment]:
+        result = AppointmentRepository.find_all()
+        return result
+
+    @classmethod
+    def get_appointment(cls,appointment_id: Union[str, ObjectId]) -> Optional[Appointment]:
+        return AppointmentRepository.get_appointment_by_id(appointment_id)

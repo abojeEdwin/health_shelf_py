@@ -76,6 +76,10 @@ class UserRepository(ABC):
         return db.users.count_documents({"user_name": username}) > 0
 
     @classmethod
+    def find_by_id(cls,user_id) -> User:
+        return db.users.find_one({"_id": user_id})
+
+    @classmethod
     def exists_by_username(cls, username) -> bool:
         return db.users.count_documents({"user_name": username}) > 0
 

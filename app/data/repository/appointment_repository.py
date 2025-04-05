@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import List, Union, Optional
 
 from bson import ObjectId
 from pymongo import MongoClient
@@ -72,6 +73,12 @@ class AppointmentRepository(ABC):
         return result.deleted_count > 0
 
     @classmethod
+    def get_appointment_by_id(cls, appointment_id: Union[ObjectId, str]) -> Optional[Appointment]:
+        if isinstance(appointment_id, str):
+            appointment_id = ObjectId(appointment_id)
+        return db.appointments.find_one({"_id": appointment_id})
+
+    @classmethod
     def update(cls, appointment : Appointment) -> bool:
         appointment_dict_update = {
             "appoint_details": appointment.appointment_details,
@@ -112,5 +119,9 @@ class AppointmentRepository(ABC):
             appointment.id = result["_id"]
             return appointment
         return None
+
+    @classmethod
+    def find_all(cls):
+        return db.appointments.count_documents({})
 
 

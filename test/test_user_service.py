@@ -1,14 +1,21 @@
 import unittest
+from datetime import datetime
+
 import pytest
 from app.data.models.gender import Gender
+from app.data.models.users.doctors.doctor import Doctor
+from app.data.models.users.doctors.doctor_profile import Doctor_Profile
 from app.data.models.users.user import User
 from app.data.models.users.user_profile import User_Profile
+from app.data.repository.appointment_repository import AppointmentRepository
+from app.services.Dto.appointment_request import User_Appointment_Request
 from app.services.Dto.user_login_request import User_Login_Request
 from app.services.Dto.user_registration_request import User_Registration_Request
 from app.services.user_service import UserService
 from app.exceptions.duplicate_email_exception import Duplicate_Email_Exception
 from app.exceptions.duplicate_username_exception import Duplicate_Username_Exception
 from app.exceptions.invalid_password_exception import Invalid_Password_Exception
+from migrations.appointment_database import db
 
 
 @pytest.mark.mongodb
@@ -16,12 +23,17 @@ class TestUserService(unittest.TestCase):
 
     request = User_Registration_Request()
     UserService = UserService
+    AppointmentRepository = AppointmentRepository
+
 
     def setUp(self):
         UserService.delete_all()
+        db.appointments.delete_many({})
+
 
     def tearDown(self):
         UserService.delete_all()
+        db.appointments.delete_many({})
 
 
     def test_user_can_register(self):
@@ -204,6 +216,94 @@ class TestUserService(unittest.TestCase):
         assert result.id is not None
         UserService.delete_by_id(result_id)
         assert UserService.count() == 0
+
+
+    def test_user_create_appointment(self):
+        request = User_Appointment_Request()
+        request.appointment.patient = User()
+        request.appointment.patient.first_name = "dele"
+        request.appointment.patient.last_name = "kasongo"
+        request.appointment.patient.pass_word = "password"
+        request.appointment.patient.email = "trojan@gmail.com"
+        request.appointment.patient.user_profile = User_Profile()
+        request.appointment.patient.user_profile.first_name = "dele"
+        request.appointment.patient.user_profile.gender = Gender.FEMALE
+        request.appointment.patient.user_profile.address = "London, UK"
+        request.appointment.doctor = Doctor()
+        request.appointment.doctor.first_name = "doctor injection"
+        request.appointment.doctor.last_name = "you no go cry ke?"
+        request.appointment.doctor.user_name = "masha"
+        request.appointment.doctor.password = "password"
+        request.appointment.doctor.email = "jagaga@gmail.com"
+        request.appointment.doctor.doctor_profile = Doctor_Profile()
+        request.appointment.doctor.doctor_profile.age = "200"
+        request.appointment.doctor.doctor_profile.specialty = "Agbo doctor"
+        request.appointment.doctor.doctor_profile.phone_number = "+2348899023"
+        request.appointment.doctor.doctor_profile.address = "Abuja"
+        request.appointment.doctor.doctor_profile.gender = Gender.MALE
+        request.appointment.appointment_details = " You have Corona Virus"
+        request.appointment.local_time = datetime.now()
+        result = UserService.create_appointment(request)
+        assert result.id is not None
+
+    def test_find_all_appointments(self):
+        request = User_Appointment_Request()
+        request.appointment.patient = User()
+        request.appointment.patient.first_name = "dele"
+        request.appointment.patient.last_name = "kasongo"
+        request.appointment.patient.pass_word = "password"
+        request.appointment.patient.email = "trojan@gmail.com"
+        request.appointment.patient.user_profile = User_Profile()
+        request.appointment.patient.user_profile.first_name = "dele"
+        request.appointment.patient.user_profile.gender = Gender.FEMALE
+        request.appointment.patient.user_profile.address = "London, UK"
+        request.appointment.doctor = Doctor()
+        request.appointment.doctor.first_name = "doctor injection"
+        request.appointment.doctor.last_name = "you no go cry ke?"
+        request.appointment.doctor.user_name = "masha"
+        request.appointment.doctor.password = "password"
+        request.appointment.doctor.email = "jagaga@gmail.com"
+        request.appointment.doctor.doctor_profile = Doctor_Profile()
+        request.appointment.doctor.doctor_profile.age = "200"
+        request.appointment.doctor.doctor_profile.specialty = "Agbo doctor"
+        request.appointment.doctor.doctor_profile.phone_number = "+2348899023"
+        request.appointment.doctor.doctor_profile.address = "Abuja"
+        request.appointment.doctor.doctor_profile.gender = Gender.MALE
+        request.appointment.appointment_details = " You have Corona Virus"
+        request.appointment.local_time = datetime.now()
+        result = UserService.create_appointment(request)
+        assert result.id is not None
+        assert UserService.find_all_appointments()
+
+    def test_get_all_appointments(self):
+        request = User_Appointment_Request()
+        request.appointment.patient = User()
+        request.appointment.patient.first_name = "dele"
+        request.appointment.patient.last_name = "kasongo"
+        request.appointment.patient.pass_word = "password"
+        request.appointment.patient.email = "trojan@gmail.com"
+        request.appointment.patient.user_profile = User_Profile()
+        request.appointment.patient.user_profile.first_name = "dele"
+        request.appointment.patient.user_profile.gender = Gender.FEMALE
+        request.appointment.patient.user_profile.address = "London, UK"
+        request.appointment.doctor = Doctor()
+        request.appointment.doctor.first_name = "doctor injection"
+        request.appointment.doctor.last_name = "you no go cry ke?"
+        request.appointment.doctor.user_name = "masha"
+        request.appointment.doctor.password = "password"
+        request.appointment.doctor.email = "jagaga@gmail.com"
+        request.appointment.doctor.doctor_profile = Doctor_Profile()
+        request.appointment.doctor.doctor_profile.age = "200"
+        request.appointment.doctor.doctor_profile.specialty = "Agbo doctor"
+        request.appointment.doctor.doctor_profile.phone_number = "+2348899023"
+        request.appointment.doctor.doctor_profile.address = "Abuja"
+        request.appointment.doctor.doctor_profile.gender = Gender.MALE
+        request.appointment.appointment_details = " You have Corona Virus"
+        request.appointment.local_time = datetime.now()
+        result = UserService.create_appointment(request)
+        assert result.id is not None
+        appointment = UserService.get_appointment(result.id)
+        assert appointment is not None
 
 
 

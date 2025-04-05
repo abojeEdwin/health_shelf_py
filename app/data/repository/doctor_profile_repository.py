@@ -88,6 +88,10 @@ class DoctorRepository(ABC):
         return db.doctors.find_one({"user_name": user_name})
 
     @classmethod
+    def find_by_id(cls, id) -> Doctor:
+        return db.doctors.find_one({"_id": id})
+
+    @classmethod
     def find_by_username(cls, user_name) -> Doctor:
         result = db.doctors.find_one({"user_name": user_name})
         return result
