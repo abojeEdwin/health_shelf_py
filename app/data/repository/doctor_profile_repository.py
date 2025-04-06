@@ -1,3 +1,4 @@
+import re
 from abc import ABC, abstractmethod
 from typing import List
 from bson import ObjectId
@@ -30,6 +31,8 @@ class DoctorRepository(ABC):
 
     @classmethod
     def save(cls, doctor : Doctor) -> Doctor:
+        if not cls.verify_email(doctor.email):
+            raise TypeError("invalid doctor email")
         doctor_dict = {
             "user_name": doctor.user_name,
             "email": doctor.email,
@@ -38,11 +41,11 @@ class DoctorRepository(ABC):
                 "first_name": doctor.doctor_profile.first_name,
                 "last_name": doctor.doctor_profile.last_name,
                 "age": doctor.doctor_profile.age,
-                "gender": doctor.doctor_profile.gender.value,
+                "gender": doctor.doctor_profile.gender,
                 "phone_number": doctor.doctor_profile.phone_number,
                 "address": doctor.doctor_profile.address,
             "doctor_specialty":{
-                "specialty": doctor.doctor_profile.specialty.specialty,
+                "specialty": doctor.doctor_profile.specialty,
             }
             }
         }
@@ -57,6 +60,8 @@ class DoctorRepository(ABC):
 
     @classmethod
     def update(cls, doctor : Doctor , id) -> bool:
+        if not cls.verify_email(doctor.email):
+            raise TypeError("invalid doctor email")
         doctor_dict = {
             "user_name": doctor.user_name,
             "email": doctor.email,
@@ -65,11 +70,11 @@ class DoctorRepository(ABC):
                 "first_name": doctor.doctor_profile.first_name,
                 "last_name": doctor.doctor_profile.last_name,
                 "age": doctor.doctor_profile.age,
-                "gender": doctor.doctor_profile.gender.value,
+                "gender": doctor.doctor_profile.gender,
                 "phone_number": doctor.doctor_profile.phone_number,
                 "address": doctor.doctor_profile.address,
             "specialty": {
-                "specialty": doctor.doctor_profile.specialty.specialty
+                "specialty": doctor.doctor_profile.specialty
                 }
             }
         }
@@ -107,7 +112,7 @@ class DoctorRepository(ABC):
     @classmethod
     def delete_by_id(cls, id) -> bool :
         return db.doctors.delete_many({"_id": ObjectId(id)})
-        return result.deleted_count > 0
+
 
     @classmethod
     def delete_doctors_by_id(cls, doctors_ids) -> List[Doctor]:
@@ -149,4 +154,15 @@ class DoctorRepository(ABC):
 
         except (ValueError, TypeError, AttributeError) as e:
             return False
+
+    @classmethod
+    def verify_email(cls,email : str) -> bool:
+        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,3}$'
+        try:
+            if not re.match(pattern, email):
+                raise TypeError("Please enter a valid email")
+            return True
+        except ValueError:
+            print("Invalid email")
+
 

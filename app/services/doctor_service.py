@@ -40,7 +40,7 @@ class DoctorService:
         doctor.email = request.doctor.email
         doctor.password = request.doctor.password
         doctor.doctor_profile = request.doctor.doctor_profile
-        doctor.doctor_profile.specialty = request.doctor_profile.specialty
+        doctor.doctor_profile.specialty = request.doctor.doctor_profile.specialty
         return DoctorRepository.save(doctor)
 
     @classmethod
@@ -88,5 +88,4 @@ class DoctorService:
             doctor=request.doctor,
             medical_history_details=request.medical_history.medical_history_details
         )
-
         return MedicalHistoryRepository.save(medical_record)

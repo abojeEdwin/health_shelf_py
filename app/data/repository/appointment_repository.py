@@ -1,10 +1,8 @@
+import re
 from abc import ABC, abstractmethod
 from typing import List, Union, Optional
-
 from bson import ObjectId
 from pymongo import MongoClient
-
-from app.data.models import appointment
 from migrations.appointment_database import db
 from app.data.models.appointment import Appointment
 import bcrypt
@@ -23,10 +21,15 @@ class AppointmentRepository(ABC):
 
     @classmethod
     def save(cls, appointment : Appointment) -> Appointment:
+        if not cls.verify_email(appointment.doctor.email):
+            raise TypeError("invalid doctor email")
+        if not cls.verify_email(appointment.patient.email):
+            raise TypeError("invalid patient email")
+
         appointment_dict = {
             "appoint_details": appointment.appointment_details,
             "user_name" :appointment.patient.user_name,
-            "email" : appointment.patient.email,
+            "email" :cls.verify_email(appointment.patient.email),
             "pass_word" : cls.hash_password(appointment.patient.pass_word),
             "patient_profile" : {
                 "first_name" : appointment.patient.user_profile.first_name,
@@ -37,7 +40,7 @@ class AppointmentRepository(ABC):
                 "age" : appointment.patient.user_profile.age,
             "doctor":{
                 "user_name" : appointment.doctor.user_name,
-                "email" : appointment.doctor.email,
+                "email" : cls.verify_email(appointment.doctor.email),
                 "pass_word" : cls.hash_password(appointment.doctor.password),
             "doctor_profile" : {
                 "first_name" : appointment.doctor.doctor_profile.first_name,
@@ -51,7 +54,6 @@ class AppointmentRepository(ABC):
             }
             }
         }
-
         inserted_id = db.appointments.insert_one(appointment_dict).inserted_id
         appointment.id = inserted_id
         return appointment
@@ -80,10 +82,15 @@ class AppointmentRepository(ABC):
 
     @classmethod
     def update(cls, appointment : Appointment) -> bool:
+        if not cls.verify_email(appointment.patient.email):
+            raise TypeError("invalid patient email")
+        if not cls.verify_email(appointment.doctor.email):
+            raise TypeError("invalid doctor email")
+
         appointment_dict_update = {
             "appoint_details": appointment.appointment_details,
             "user_name": appointment.patient.user_name,
-            "email": appointment.patient.email,
+            "email": cls.verify_email(appointment.patient.email),
             "pass_word": cls.hash_password(appointment.patient.pass_word),
             "patient_profile": {
                 "first_name": appointment.patient.user_profile.first_name,
@@ -94,7 +101,7 @@ class AppointmentRepository(ABC):
                 "age": appointment.patient.user_profile.age,
                 "doctor": {
                     "user_name": appointment.doctor.user_name,
-                    "email": appointment.doctor.email,
+                    "email": cls.verify_email(appointment.doctor.email),
                     "pass_word": cls.hash_password(appointment.doctor.password),
                     "doctor_profile": {
                         "first_name": appointment.doctor.doctor_profile.first_name,
@@ -123,5 +130,15 @@ class AppointmentRepository(ABC):
     @classmethod
     def find_all(cls):
         return db.appointments.count_documents({})
+
+    @classmethod
+    def verify_email(cls,email : str) -> bool:
+        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,3}$'
+        try:
+            if not re.match(pattern, email):
+                raise TypeError("Please enter a valid email")
+            return True
+        except ValueError:
+            print("Invalid email")
 
 

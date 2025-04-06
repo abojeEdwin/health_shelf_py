@@ -79,7 +79,7 @@ class UserService:
         doctor = DoctorRepository.find_by_id(request.appointment.doctor.id)
         return AppointmentRepository.save(request.appointment)
 
-    @classmethod
+    @classmethod 
     def find_all_appointments(cls)-> List[Appointment]:
         result = AppointmentRepository.find_all()
         return result

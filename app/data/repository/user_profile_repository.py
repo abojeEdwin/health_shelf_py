@@ -1,3 +1,4 @@
+import re
 from abc import ABC, abstractmethod
 from typing import List, Optional
 from bson import ObjectId
@@ -28,6 +29,8 @@ class UserRepository(ABC):
 
     @classmethod
     def save(cls, user : User) -> User:
+        if not cls.verify_email(user.email):
+            raise TypeError("invalid email")
         user_dict = {
             "user_name": user.user_name,
             "email": user.email,
@@ -36,7 +39,7 @@ class UserRepository(ABC):
                 "first_name": user.user_profile.first_name,
                 "last_name": user.user_profile.last_name,
                 "age": user.user_profile.age,
-                "gender": user.user_profile.gender.value,
+                "gender": user.user_profile.gender,
                 "phone_number": user.user_profile.phone_number,
                 "address": user.user_profile.address,
             }
@@ -99,15 +102,18 @@ class UserRepository(ABC):
 
     @classmethod
     def update(cls, user : User, id) -> bool:
+        if not cls.verify_email(user.email):
+            raise TypeError("invalid email")
+
         user_dict = {
             "user_name": user.user_name,
-            "email": user.email,
+            "email": cls.verify_email(user.email),
             "password": cls.hash_password(user.pass_word),
             "user_profile": {
                 "first_name": user.user_profile.first_name,
                 "last_name": user.user_profile.last_name,
                 "age": user.user_profile.age,
-                "gender": user.user_profile.gender.value,
+                "gender": user.user_profile.gender,
                 "phone_number": user.user_profile.phone_number,
                 "address": user.user_profile.address,
             }
@@ -122,6 +128,18 @@ class UserRepository(ABC):
         if isinstance(password, str):
             password = password.encode('utf-8')
         return bcrypt.hashpw(password, bcrypt.gensalt())
+
+    @classmethod
+    def verify_email(cls,email : str) -> bool:
+        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,3}$'
+        try:
+            if not re.match(pattern, email):
+                raise TypeError("Please enter a valid email")
+            return True
+        except ValueError:
+            print("Invalid email")
+
+
 
     @classmethod
     def verify_password(cls, hashed_password: str, input_password: str) -> bool:

@@ -30,6 +30,7 @@ class TestUserRepository(unittest.TestCase):
         user.user_profile.address = "Ibadan"
         user.user_profile.age = "39"
         user.user_profile.phone_number = "+555555555"
+
         result = UserRepository.save(user)
         assert result.id is not None
 

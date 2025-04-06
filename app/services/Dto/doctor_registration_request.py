@@ -4,5 +4,5 @@ from dataclasses import dataclass
 
 @dataclass
 class Doctor_Registration_Request:
-    doctor = Doctor()
-    doctor_profile = Doctor_Profile()
+    doctor : Doctor = None
+    doctor_profile  : Doctor_Profile = None
