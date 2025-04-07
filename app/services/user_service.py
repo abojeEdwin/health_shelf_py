@@ -1,9 +1,7 @@
 from typing import Union, List, Optional
 from bson import ObjectId
 from app.data.models.appointment import Appointment
-from app.data.models.users import user
 from app.data.models.users.user import User
-from app.data.models.users.user_profile import User_Profile
 from app.data.repository.appointment_repository import AppointmentRepository
 from app.data.repository.user_profile_repository import UserRepository
 from app.data.repository.doctor_profile_repository import DoctorRepository
@@ -79,7 +77,7 @@ class UserService:
         doctor = DoctorRepository.find_by_id(request.appointment.doctor.id)
         return AppointmentRepository.save(request.appointment)
 
-    @classmethod 
+    @classmethod
     def find_all_appointments(cls)-> List[Appointment]:
         result = AppointmentRepository.find_all()
         return result

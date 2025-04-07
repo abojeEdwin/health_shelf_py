@@ -107,7 +107,7 @@ class UserRepository(ABC):
 
         user_dict = {
             "user_name": user.user_name,
-            "email": cls.verify_email(user.email),
+            "email": user.email,
             "password": cls.hash_password(user.pass_word),
             "user_profile": {
                 "first_name": user.user_profile.first_name,

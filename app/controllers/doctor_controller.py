@@ -2,9 +2,8 @@ from flask import Flask, jsonify, request
 from pymongo import MongoClient
 from app.data.models.users.doctors.doctor import Doctor
 from app.data.models.users.doctors.doctor_profile import Doctor_Profile
-from app.exceptions.duplicate_email_exception import Duplicate_Email_Exception
-from app.exceptions.duplicate_username_exception import Duplicate_Username_Exception
 from app.services.Dto.doctor_registration_request import Doctor_Registration_Request
+from app.services.Dto.user_login_request import User_Login_Request
 from app.services.doctor_service import DoctorService
 
 
@@ -42,12 +41,28 @@ def register_doctor():
         return jsonify({
             "status": "success",
         })
-    except Duplicate_Email_Exception as e:
-        return jsonify({"error": str(e)})
-    except Duplicate_Username_Exception as e:
-        return jsonify({"error": str(e)})
     except Exception as e:
         return jsonify({"error": str(e)})
+
+
+
+@app.route('/api/login_doctor', methods=['GET'])
+def login_doctor():
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify({"error": "Request body must be JSON"})
+        login_request = User_Login_Request()
+        login_request.email = data['email']
+        login_request.password = data['password']
+        login_user = DoctorService.login(login_request)
+        return jsonify({
+            "status": "successful",
+        })
+
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
 
 
 

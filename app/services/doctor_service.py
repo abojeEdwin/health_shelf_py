@@ -1,9 +1,7 @@
 from typing import List
-
 from app.data.models.appointment import Appointment
 from app.data.models.medical_history import Medical_History
 from app.data.models.users.doctors.doctor import Doctor
-from app.data.models.users.user import User
 from app.data.repository.appointment_repository import AppointmentRepository
 from app.data.repository.doctor_profile_repository import DoctorRepository
 from app.data.repository.medical_history_repository import MedicalHistoryRepository

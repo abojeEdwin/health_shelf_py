@@ -1,20 +1,14 @@
+from bson import ObjectId
+from bson.errors import InvalidId
 from pymongo import MongoClient
 from flask import request, jsonify, Flask
 from flask import request, jsonify
-from app.data.models.appointment import Appointment
-from app.data.models.gender import Gender
-from app.data.models.medical_history import Medical_History
-from app.data.models.users.doctors.doctor import Doctor
-from app.data.models.users.doctors.doctor_profile import Doctor_Profile
 from app.data.models.users.user import User
 from app.data.models.users.user_profile import User_Profile
-from app.exceptions.duplicate_email_exception import Duplicate_Email_Exception
-from app.services.Dto.appointment_request import User_Appointment_Request
-from app.services.Dto.medical_history_request import Medical_History_Request
 from app.services.Dto.user_login_request import User_Login_Request
 from app.services.user_service import UserService
 from app.services.Dto.user_registration_request import User_Registration_Request
-from app.exceptions.duplicate_username_exception import Duplicate_Username_Exception
+
 
 app = Flask(__name__)
 app.config['MONGO_URI'] = 'mongodb://localhost:27017'
@@ -57,7 +51,7 @@ def register_user():
     except Exception as e:
         return jsonify({"error": str(e)})
 
-@app.route('/api/login', methods = ['GET'])
+@app.route('/api/login_user', methods = ['GET'])
 def login():
     try:
         data = request.get_json()
@@ -75,26 +69,11 @@ def login():
 
 @app.route('/api/create_appointment', methods = ['GET'])
 def create_appointment():
-        try:
-            data = request.get_json()
-            if not data:
-                return jsonify({"error": "Request body must be JSON"})
-            appointment_request = User_Appointment_Request(
-                appointment=Appointment(
-                    appointment=User(id=data['patient_id']),
-                    doctor=Doctor(id=data['doctor_id']),
-                )
-            )
-            appointment = UserService.create_appointment(appointment_request)
-            return jsonify({
-                "status": "success",
-            })
-        except Exception as e:
-            return jsonify({"error": str(e)})
+    pass
 
-
-
-
+@app.route('/api/delete_account', methods = ['DELETE'])
+def delete_account(user_id):
+        pass
 
 
 

@@ -62,6 +62,7 @@ class DoctorRepository(ABC):
     def update(cls, doctor : Doctor , id) -> bool:
         if not cls.verify_email(doctor.email):
             raise TypeError("invalid doctor email")
+
         doctor_dict = {
             "user_name": doctor.user_name,
             "email": doctor.email,

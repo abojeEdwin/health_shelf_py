@@ -23,29 +23,27 @@ class AppointmentRepository(ABC):
     def save(cls, appointment : Appointment) -> Appointment:
         if not cls.verify_email(appointment.doctor.email):
             raise TypeError("invalid doctor email")
-        if not cls.verify_email(appointment.patient.email):
-            raise TypeError("invalid patient email")
 
         appointment_dict = {
             "appoint_details": appointment.appointment_details,
             "user_name" :appointment.patient.user_name,
-            "email" :cls.verify_email(appointment.patient.email),
+            "email" : appointment.patient.email,
             "pass_word" : cls.hash_password(appointment.patient.pass_word),
             "patient_profile" : {
                 "first_name" : appointment.patient.user_profile.first_name,
                 "last_name" : appointment.patient.user_profile.last_name,
-                "gender" : appointment.patient.user_profile.gender.value,
+                "gender" : appointment.patient.user_profile.gender,
                 "phone_number" : appointment.patient.user_profile.phone_number,
                 "address" : appointment.patient.user_profile.address,
                 "age" : appointment.patient.user_profile.age,
             "doctor":{
                 "user_name" : appointment.doctor.user_name,
-                "email" : cls.verify_email(appointment.doctor.email),
+                "email" : appointment.doctor.email,
                 "pass_word" : cls.hash_password(appointment.doctor.password),
             "doctor_profile" : {
                 "first_name" : appointment.doctor.doctor_profile.first_name,
                 "last_name" : appointment.doctor.doctor_profile.last_name,
-                "gender" : appointment.doctor.doctor_profile.gender.value,
+                "gender" : appointment.doctor.doctor_profile.gender,
                 "phone_number" : appointment.doctor.doctor_profile.phone_number,
                 "address" : appointment.doctor.doctor_profile.address,
                 "age" : appointment.doctor.doctor_profile.age,
@@ -84,29 +82,27 @@ class AppointmentRepository(ABC):
     def update(cls, appointment : Appointment) -> bool:
         if not cls.verify_email(appointment.patient.email):
             raise TypeError("invalid patient email")
-        if not cls.verify_email(appointment.doctor.email):
-            raise TypeError("invalid doctor email")
 
         appointment_dict_update = {
             "appoint_details": appointment.appointment_details,
             "user_name": appointment.patient.user_name,
-            "email": cls.verify_email(appointment.patient.email),
+            "email": appointment.patient.email,
             "pass_word": cls.hash_password(appointment.patient.pass_word),
             "patient_profile": {
                 "first_name": appointment.patient.user_profile.first_name,
                 "last_name": appointment.patient.user_profile.last_name,
-                "gender": appointment.patient.user_profile.gender.value,
+                "gender": appointment.patient.user_profile.gender,
                 "phone_number": appointment.patient.user_profile.phone_number,
                 "address": appointment.patient.user_profile.address,
                 "age": appointment.patient.user_profile.age,
                 "doctor": {
                     "user_name": appointment.doctor.user_name,
-                    "email": cls.verify_email(appointment.doctor.email),
+                    "email": appointment.doctor.email,
                     "pass_word": cls.hash_password(appointment.doctor.password),
                     "doctor_profile": {
                         "first_name": appointment.doctor.doctor_profile.first_name,
                         "last_name": appointment.doctor.doctor_profile.last_name,
-                        "gender": appointment.doctor.doctor_profile.gender.value,
+                        "gender": appointment.doctor.doctor_profile.gender,
                         "phone_number": appointment.doctor.doctor_profile.phone_number,
                         "address": appointment.doctor.doctor_profile.address,
                         "age": appointment.doctor.doctor_profile.age,
