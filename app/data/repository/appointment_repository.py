@@ -52,7 +52,7 @@ class AppointmentRepository(ABC):
             }
             }
         }
-        inserted_id = db.appointments.insert_one(appointment_dict).inserted_id
+        inserted_id = db.appointments.insert_one(appointment_dict)
         appointment.id = inserted_id
         return appointment
 

@@ -27,34 +27,32 @@ class MedicalHistoryRepository(ABC):
     def save(cls, medical_history : Medical_History) -> Medical_History:
         if not cls.verify_email(medical_history.doctor.email):
             raise TypeError("invalid doctor email")
-        if not cls.verify_email(medical_history.patient.email):
-            raise TypeError("invalid patient email")
 
         medical_history_dict = {
             "medical_history_details": medical_history.medical_history_details,
             "user_name" : medical_history.patient.user_name,
-            "email" : cls.verify_email(medical_history.patient.email),
+            "email" : medical_history.patient.email,
             "password" : cls.hash_password(medical_history.patient.pass_word),
             "patient_profile" :{
                 "first_name" : medical_history.patient.user_profile.first_name,
                 "last_name" : medical_history.patient.user_profile.last_name,
-                "gender" : medical_history.patient.user_profile.gender.value,
+                "gender" : medical_history.patient.user_profile.gender,
                 "address" : medical_history.patient.user_profile.address,
                 "age" : medical_history.patient.user_profile.age,
                 "phone_number" : medical_history.patient.user_profile.phone_number,
             "doctor" :{
                 "user_name" : medical_history.doctor.user_name,
-                "email" : cls.verify_email(medical_history.doctor.email),
+                "email" : medical_history.doctor.email,
                 "password" : cls.hash_password(medical_history.doctor.password),
             "doctor_profile" :{
                 "first_name" : medical_history.doctor.doctor_profile.first_name,
                 "last_name" : medical_history.doctor.doctor_profile.last_name,
-                "gender" : medical_history.doctor.doctor_profile.gender.value,
+                "gender" : medical_history.doctor.doctor_profile.gender,
                 "address" : medical_history.doctor.doctor_profile.address,
                 "age" : medical_history.doctor.doctor_profile.age,
                 "phone_number" : medical_history.doctor.doctor_profile.phone_number,
             "doctor_specialty" :{
-                "specialty": medical_history.doctor.doctor_profile.specialty.specialty,
+                "specialty": medical_history.doctor.doctor_profile.specialty,
             }
             }
             }
@@ -76,18 +74,17 @@ class MedicalHistoryRepository(ABC):
     def update(cls, medical_history: Medical_History, id: str) -> bool:
         if not cls.verify_email(medical_history.doctor.email):
             raise TypeError("invalid doctor email")
-        if not cls.verify_email(medical_history.patient.email):
-            raise TypeError("invalid patient email")
+
         update_data = {
             "medical_history_details": medical_history.medical_history_details,
             "patient": {
                 "user_name": medical_history.patient.user_name,
-                "email": cls.verify_email(medical_history.patient.email),
+                "email": medical_history.patient.email,
                 "pass_word": cls.hash_password(medical_history.patient.pass_word),
                 "user_profile": {
                     "first_name": medical_history.patient.user_profile.first_name,
                     "last_name": medical_history.patient.user_profile.last_name,
-                    "gender": medical_history.patient.user_profile.gender.value,
+                    "gender": medical_history.patient.user_profile.gender,
                     "address": medical_history.patient.user_profile.address,
                     "age": medical_history.patient.user_profile.age,
                     "phone_number": medical_history.patient.user_profile.phone_number
@@ -95,30 +92,26 @@ class MedicalHistoryRepository(ABC):
             },
             "doctor": {
                 "user_name": medical_history.doctor.user_name,
-                "email": cls.verify_email(medical_history.doctor.email),
+                "email": medical_history.doctor.email,
                 "password": cls.hash_password(medical_history.doctor.password),
                 "doctor_profile": {
                     "first_name": medical_history.doctor.doctor_profile.first_name,
                     "last_name": medical_history.doctor.doctor_profile.last_name,
-                    "gender": medical_history.doctor.doctor_profile.gender.value,
+                    "gender": medical_history.doctor.doctor_profile.gender,
                     "address": medical_history.doctor.doctor_profile.address,
                     "age": medical_history.doctor.doctor_profile.age,
                     "phone_number": medical_history.doctor.doctor_profile.phone_number,
                     "specialty": {
-                        "specialty": medical_history.doctor.doctor_profile.specialty.specialty
+                        "specialty": medical_history.doctor.doctor_profile.specialty
                     }
                 }
             }
         }
-        try:
-            result = db.medical_history.update_one(
-                {"_id": ObjectId(id)},
-                {"$set": update_data}
-            )
-            return result.modified_count == 1
-        except Exception as e:
-            print(f"Update failed: {str(e)}")
-            return False
+        result = db.medical_history.update_one(
+            {"_id": ObjectId(id)},
+            {"$set": update_data}
+        )
+        return result.modified_count == 1
 
     @classmethod
     def find_by_id(cls, id) -> Medical_History:
