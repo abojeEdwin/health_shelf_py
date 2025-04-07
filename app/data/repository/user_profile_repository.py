@@ -103,10 +103,15 @@ class UserRepository(ABC):
 
     @classmethod
     def hash_password(cls, password):
+        if not password:
+            raise ValueError("Password cannot be None")
         if isinstance(password, str):
             password = password.encode('utf-8')
-        hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
-        return hashed_password
+        return bcrypt.hashpw(password, bcrypt.gensalt())
+
+    @classmethod
+    def delete_all(cls):
+        db.users.delete_many({})
 
 
 
