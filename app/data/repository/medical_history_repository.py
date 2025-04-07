@@ -74,8 +74,7 @@ class MedicalHistoryRepository(ABC):
     def update(cls, medical_history: Medical_History, id: str) -> bool:
         if not cls.verify_email(medical_history.doctor.email):
             raise TypeError("invalid doctor email")
-        if not cls.verify_email(medical_history.patient.email):
-            raise TypeError("invalid patient email")
+
         update_data = {
             "medical_history_details": medical_history.medical_history_details,
             "patient": {
