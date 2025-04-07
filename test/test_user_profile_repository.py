@@ -30,6 +30,7 @@ class TestUserRepository(unittest.TestCase):
         user.user_profile.address = "Ibadan"
         user.user_profile.age = "39"
         user.user_profile.phone_number = "+555555555"
+
         result = UserRepository.save(user)
         assert result.id is not None
 
@@ -81,8 +82,9 @@ class TestUserRepository(unittest.TestCase):
         user.user_profile.age = "39"
         user.user_profile.phone_number = "+555555555"
         result = UserRepository.save(user)
-        UserRepository.find_by_username("choko")
+        self.assertTrue(UserRepository.find_by_username("choko"))
         assert result.id is not None
+
 
     def test_user_exists_by_user_name(self):
         assert UserRepository.count_documents() == 0
@@ -98,7 +100,7 @@ class TestUserRepository(unittest.TestCase):
         user.user_profile.age = "39"
         user.user_profile.phone_number = "+555555555"
         result = UserRepository.save(user)
-        UserRepository.exists_by_username("choko")
+        self.assertTrue(UserRepository.exists_by_username("choko"))
         assert result.id is not None
 
     def test_counts_of_users(self):

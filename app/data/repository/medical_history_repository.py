@@ -1,10 +1,7 @@
+import re
 from abc import ABC, abstractmethod
-from importlib.metadata import pass_none
-
 from bson import ObjectId
 from pymongo import MongoClient
-
-from app.data.models import medical_history
 from app.data.models.medical_history import Medical_History
 from migrations.medical_history_database import db
 import bcrypt
@@ -28,10 +25,15 @@ class MedicalHistoryRepository(ABC):
 
     @classmethod
     def save(cls, medical_history : Medical_History) -> Medical_History:
+        if not cls.verify_email(medical_history.doctor.email):
+            raise TypeError("invalid doctor email")
+        if not cls.verify_email(medical_history.patient.email):
+            raise TypeError("invalid patient email")
+
         medical_history_dict = {
             "medical_history_details": medical_history.medical_history_details,
             "user_name" : medical_history.patient.user_name,
-            "email" : medical_history.patient.email,
+            "email" : cls.verify_email(medical_history.patient.email),
             "password" : cls.hash_password(medical_history.patient.pass_word),
             "patient_profile" :{
                 "first_name" : medical_history.patient.user_profile.first_name,
@@ -42,7 +44,7 @@ class MedicalHistoryRepository(ABC):
                 "phone_number" : medical_history.patient.user_profile.phone_number,
             "doctor" :{
                 "user_name" : medical_history.doctor.user_name,
-                "email" : medical_history.doctor.email,
+                "email" : cls.verify_email(medical_history.doctor.email),
                 "password" : cls.hash_password(medical_history.doctor.password),
             "doctor_profile" :{
                 "first_name" : medical_history.doctor.doctor_profile.first_name,
@@ -72,11 +74,15 @@ class MedicalHistoryRepository(ABC):
 
     @classmethod
     def update(cls, medical_history: Medical_History, id: str) -> bool:
+        if not cls.verify_email(medical_history.doctor.email):
+            raise TypeError("invalid doctor email")
+        if not cls.verify_email(medical_history.patient.email):
+            raise TypeError("invalid patient email")
         update_data = {
             "medical_history_details": medical_history.medical_history_details,
             "patient": {
                 "user_name": medical_history.patient.user_name,
-                "email": medical_history.patient.email,
+                "email": cls.verify_email(medical_history.patient.email),
                 "pass_word": cls.hash_password(medical_history.patient.pass_word),
                 "user_profile": {
                     "first_name": medical_history.patient.user_profile.first_name,
@@ -89,7 +95,7 @@ class MedicalHistoryRepository(ABC):
             },
             "doctor": {
                 "user_name": medical_history.doctor.user_name,
-                "email": medical_history.doctor.email,
+                "email": cls.verify_email(medical_history.doctor.email),
                 "password": cls.hash_password(medical_history.doctor.password),
                 "doctor_profile": {
                     "first_name": medical_history.doctor.doctor_profile.first_name,
@@ -122,4 +128,14 @@ class MedicalHistoryRepository(ABC):
             medical_history.id = result["_id"]
             return medical_history
         return None
+
+    @classmethod
+    def verify_email(cls, email: str) -> bool:
+        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,3}$'
+        try:
+            if not re.match(pattern, email):
+                raise TypeError("Please enter a valid email")
+            return True
+        except ValueError:
+            print("Invalid email")
 

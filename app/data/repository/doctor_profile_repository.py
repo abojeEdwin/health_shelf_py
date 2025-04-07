@@ -1,3 +1,4 @@
+import re
 from abc import ABC, abstractmethod
 from typing import List
 from bson import ObjectId
@@ -30,6 +31,8 @@ class DoctorRepository(ABC):
 
     @classmethod
     def save(cls, doctor : Doctor) -> Doctor:
+        if not cls.verify_email(doctor.email):
+            raise TypeError("invalid doctor email")
         doctor_dict = {
             "user_name": doctor.user_name,
             "email": doctor.email,
@@ -38,11 +41,11 @@ class DoctorRepository(ABC):
                 "first_name": doctor.doctor_profile.first_name,
                 "last_name": doctor.doctor_profile.last_name,
                 "age": doctor.doctor_profile.age,
-                "gender": doctor.doctor_profile.gender.value,
+                "gender": doctor.doctor_profile.gender,
                 "phone_number": doctor.doctor_profile.phone_number,
                 "address": doctor.doctor_profile.address,
             "doctor_specialty":{
-                "specialty": doctor.doctor_profile.specialty.specialty,
+                "specialty": doctor.doctor_profile.specialty,
             }
             }
         }
@@ -57,6 +60,9 @@ class DoctorRepository(ABC):
 
     @classmethod
     def update(cls, doctor : Doctor , id) -> bool:
+        if not cls.verify_email(doctor.email):
+            raise TypeError("invalid doctor email")
+
         doctor_dict = {
             "user_name": doctor.user_name,
             "email": doctor.email,
@@ -65,11 +71,11 @@ class DoctorRepository(ABC):
                 "first_name": doctor.doctor_profile.first_name,
                 "last_name": doctor.doctor_profile.last_name,
                 "age": doctor.doctor_profile.age,
-                "gender": doctor.doctor_profile.gender.value,
+                "gender": doctor.doctor_profile.gender,
                 "phone_number": doctor.doctor_profile.phone_number,
                 "address": doctor.doctor_profile.address,
             "specialty": {
-                "specialty": doctor.doctor_profile.specialty.specialty
+                "specialty": doctor.doctor_profile.specialty
                 }
             }
         }
@@ -88,9 +94,17 @@ class DoctorRepository(ABC):
         return db.doctors.find_one({"user_name": user_name})
 
     @classmethod
+    def find_by_id(cls, id) -> Doctor:
+        return db.doctors.find_one({"_id": id})
+
+    @classmethod
     def find_by_username(cls, user_name) -> Doctor:
         result = db.doctors.find_one({"user_name": user_name})
         return result
+
+    @classmethod
+    def find_all(cls):
+        return db.doctors.count_documents({})
 
     @classmethod
     def exists_by_id(cls, id) -> bool:
@@ -99,6 +113,7 @@ class DoctorRepository(ABC):
     @classmethod
     def delete_by_id(cls, id) -> bool :
         return db.doctors.delete_many({"_id": ObjectId(id)})
+
 
     @classmethod
     def delete_doctors_by_id(cls, doctors_ids) -> List[Doctor]:
@@ -111,3 +126,44 @@ class DoctorRepository(ABC):
             password = password.encode('utf-8')
         hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
         return hashed_password
+
+    @classmethod
+    def delete_all(cls):
+        return db.doctors.delete_many({})
+
+
+    @classmethod
+    def find_by_email(cls, email: str) -> Doctor:
+        doctor = db.doctors.find_one({"email":email})
+        return doctor
+
+    @classmethod
+    def verify_password(cls, hashed_password: str, input_password: str) -> bool:
+
+        if not hashed_password or not input_password:
+            return False
+        try:
+            if isinstance(hashed_password, str):
+                hashed_password_bytes = hashed_password.encode('utf-8')
+            else:
+                hashed_password_bytes = hashed_password
+            if isinstance(input_password, str):
+                input_password_bytes = input_password.encode('utf-8')
+            else:
+                input_password_bytes = input_password
+            return bcrypt.checkpw(input_password_bytes, hashed_password_bytes)
+
+        except (ValueError, TypeError, AttributeError) as e:
+            return False
+
+    @classmethod
+    def verify_email(cls,email : str) -> bool:
+        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,3}$'
+        try:
+            if not re.match(pattern, email):
+                raise TypeError("Please enter a valid email")
+            return True
+        except ValueError:
+            print("Invalid email")
+
+
