@@ -89,6 +89,6 @@ class UserService:
         result = AppointmentRepository.find_all()
         return result
 
-    @classmethod
-    def get_appointment(cls,appointment_id: ObjectId) -> Appointment:
-        return AppointmentRepository.get_appointment_by_id(appointment_id)
+    # @classmethod
+    # def get_appointment(cls,appointment_id: ObjectId) -> Appointment:
+    #     return AppointmentRepository.get_appointment_by_id(appointment_id)

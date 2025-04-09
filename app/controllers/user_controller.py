@@ -116,11 +116,22 @@ def create_appointment():
 
 
 @app.route('/api/delete_account', methods = ['DELETE'])
-def delete_account(user_id):
-        pass
+def delete_account():
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify({"error": "Request body must be JSON"})
+        UserService.delete_all()
+        return jsonify({
+            "status": "success",
+        })
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
+
 
 
 
 
 if __name__ == '__main__':
-    app.run(port=5006, debug=True)
+    app.run(port=5000, debug=True)
