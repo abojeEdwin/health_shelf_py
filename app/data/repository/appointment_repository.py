@@ -20,7 +20,7 @@ class AppointmentRepository(ABC):
         self.collection = self.db[db_name.appointments]
 
     @classmethod
-    def save(cls, appointment : Appointment) -> Appointment:
+    def save(cls, appointment : Appointment) -> ObjectId:
         if not cls.verify_email(appointment.doctor.email):
             raise TypeError("invalid doctor email")
 
@@ -47,14 +47,15 @@ class AppointmentRepository(ABC):
                 "phone_number" : appointment.doctor.doctor_profile.phone_number,
                 "address" : appointment.doctor.doctor_profile.address,
                 "age" : appointment.doctor.doctor_profile.age,
+            "specialty":{
                 "specialty" : appointment.doctor.doctor_profile.specialty,
             }
             }
             }
+            }
         }
-        inserted_id = db.appointments.insert_one(appointment_dict)
-        appointment.id = inserted_id
-        return appointment
+        inserted_appointment = db.appointments.insert_one(appointment_dict)
+        return inserted_appointment.inserted_id
 
     @classmethod
     def count_documents(cls):
@@ -73,7 +74,7 @@ class AppointmentRepository(ABC):
         return result.deleted_count > 0
 
     @classmethod
-    def get_appointment_by_id(cls, appointment_id: Union[ObjectId, str]) -> Optional[Appointment]:
+    def get_appointment_by_id(cls, appointment_id: ObjectId) -> Appointment:
         if isinstance(appointment_id, str):
             appointment_id = ObjectId(appointment_id)
         return db.appointments.find_one({"_id": appointment_id})
@@ -102,7 +103,7 @@ class AppointmentRepository(ABC):
                     "doctor_profile": {
                         "first_name": appointment.doctor.doctor_profile.first_name,
                         "last_name": appointment.doctor.doctor_profile.last_name,
-                        "gender": appointment.doctor.doctor_profile.gender,
+                        "gender": appointment.doctor.doctor_profile.gender.value,
                         "phone_number": appointment.doctor.doctor_profile.phone_number,
                         "address": appointment.doctor.doctor_profile.address,
                         "age": appointment.doctor.doctor_profile.age,

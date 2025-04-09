@@ -54,9 +54,10 @@ class DoctorService:
 
     @classmethod
     def create_appointment(cls, request: User_Appointment_Request) -> Appointment:
-        patient = UserRepository.find_by_id(request.appointment.patient.id)
-        doctor = DoctorRepository.find_by_id(request.appointment.doctor.id)
-        return AppointmentRepository.save(request.appointment)
+        pass
+        # patient = UserRepository.find_by_id(request.appointment.patient.id)
+        # doctor = DoctorRepository.find_by_id(request.appointment.doctor.id)
+        # return AppointmentRepository.save(request.appointment)
 
     @classmethod
     def find_all_appointments(cls) -> List[Appointment]:

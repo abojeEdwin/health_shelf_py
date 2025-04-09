@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d88ffe6-0543-4b28-94e0-f19e17c9b41f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/services/Dto/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/services/Dto/appointment_request.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/services/Dto/doctor_registration_request.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/services/Dto/medical_history_request.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/services/Dto/user_login_request.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/services/Dto/user_registration_request.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/user_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/user_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/data/repository/appointment_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/data/repository/appointment_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/data/repository/user_profile_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/data/repository/user_profile_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/doctor_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/doctor_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/user_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/user_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_user_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_user_service.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +52,9 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;HTTP Request.generated-requests | #6.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #7.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #8.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for test_appointment_repository.TestAppointmentRepository.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for test_appointment_repository.TestAppointmentRepository.test_create_and_save_appointment.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.executor&quot;: &quot;Run&quot;,
@@ -64,6 +67,8 @@
     &quot;Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_find_doctor_by_user_name.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_find_doctor_by_username.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_save_doctor_profile.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_medical_history_repository.TestMedicalHistoryRepository.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_medical_history_repository.TestMedicalHistoryRepository.test_create_and_save_medical_history.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for test_user_profile_repository.TestUserRepository.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_counts_of_users.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_create_user.executor&quot;: &quot;Run&quot;,
@@ -75,6 +80,18 @@
     &quot;Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_user_exists_by_email.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_user_exists_by_user_name.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for test_user_profile_repository.TestUserRepository.test_user_exists_by_username.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_service.TestUserService.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_service.TestUserService.test_delete_account_by_id.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_service.TestUserService.test_find_all_doctors.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_service.TestUserService.test_find_all_users.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_service.TestUserService.test_find_user_by_id.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_service.TestUserService.test_user_can_register.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_service.TestUserService.test_user_cannot_register_twice.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_service.TestUserService.test_user_cannot_register_with_same_user_name_twice.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_service.TestUserService.test_user_create_appointment.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_service.TestUserService.test_user_login.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_user_service.TestUserService.test_user_login_with_valid_password.executor&quot;: &quot;Run&quot;,
+    &quot;Python.user_controller.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
@@ -95,72 +112,40 @@
       <recent name="$PROJECT_DIR$/app/data/models/users" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for test_appointment_repository.TestAppointmentRepository">
-    <configuration name="Python tests for test_appointment_repository.TestAppointmentRepository" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="health_shelf_py" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_appointment_repository.TestAppointmentRepository&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+  <component name="RunManager" selected="HTTP Request.generated-requests | #6">
+    <configuration name="generated-requests | #6" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#6" index="6" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_appointment_repository.TestAppointmentRepository.test_create_and_save_appointment" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="health_shelf_py" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_appointment_repository.TestAppointmentRepository.test_create_and_save_appointment&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+    <configuration name="generated-requests | #7" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#7" index="7" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_doctor_profile.TestDoctorProfileRepository" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="health_shelf_py" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_doctor_profile.TestDoctorProfileRepository&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+    <configuration name="generated-requests | #8" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#8" index="8" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_doctor_profile.TestDoctorProfileRepository.test_delete_doctor_by_id" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="user_controller" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="health_shelf_py" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app/controllers" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_doctor_profile.TestDoctorProfileRepository.test_delete_doctor_by_id&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/controllers/user_controller.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_doctor_profile.TestDoctorProfileRepository.test_delete_doctors_by_id" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for test_user_service.TestUserService.test_user_create_appointment" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="health_shelf_py" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -172,17 +157,17 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_doctor_profile.TestDoctorProfileRepository.test_delete_doctors_by_id&quot;" />
+      <option name="_new_target" value="&quot;test_user_service.TestUserService.test_user_create_appointment&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for test_appointment_repository.TestAppointmentRepository" />
-        <item itemvalue="Python tests.Python tests for test_appointment_repository.TestAppointmentRepository.test_create_and_save_appointment" />
-        <item itemvalue="Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository" />
-        <item itemvalue="Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_delete_doctors_by_id" />
-        <item itemvalue="Python tests.Python tests for test_doctor_profile.TestDoctorProfileRepository.test_delete_doctor_by_id" />
+        <item itemvalue="HTTP Request.generated-requests | #6" />
+        <item itemvalue="HTTP Request.generated-requests | #7" />
+        <item itemvalue="HTTP Request.generated-requests | #8" />
+        <item itemvalue="Python.user_controller" />
+        <item itemvalue="Python tests.Python tests for test_user_service.TestUserService.test_user_create_appointment" />
       </list>
     </recent_temporary>
   </component>
@@ -207,6 +192,9 @@
       <workItem from="1743620120703" duration="17833000" />
       <workItem from="1743666297942" duration="12604000" />
       <workItem from="1743777914478" duration="1237000" />
+      <workItem from="1744023092041" duration="7928000" />
+      <workItem from="1744039808250" duration="13838000" />
+      <workItem from="1744117433165" duration="1200000" />
     </task>
     <servers />
   </component>
@@ -214,6 +202,7 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/health_shelf_py$.coverage" NAME=" Coverage Results" MODIFIED="1743778040450" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/health_shelf_py$user_controller.coverage" NAME="user_controller Coverage Results" MODIFIED="1744065079730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/controllers" />
+    <SUITE FILE_PATH="coverage/health_shelf_py$.coverage" NAME=" Coverage Results" MODIFIED="1744062570430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
   </component>
 </project>
