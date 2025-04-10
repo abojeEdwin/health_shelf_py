@@ -1,3 +1,102 @@
+DELETE http://localhost:5000/api/delete_account
+User-Agent: IntelliJ HTTP Client/PyCharm 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-04-09T174005.200.json
+
+###
+
+DELETE http://localhost:5000/api/delete_account
+User-Agent: IntelliJ HTTP Client/PyCharm 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-04-09T173429.500.html
+
+###
+
+DELETE http://localhost:5000/api/delete_account
+User-Agent: IntelliJ HTTP Client/PyCharm 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-04-09T173259.500.html
+
+###
+
+DELETE http://localhost:5000/api/delete_account
+User-Agent: IntelliJ HTTP Client/PyCharm 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-04-09T173124.500.html
+
+###
+
+POST http://localhost:5000/api/create_appointment
+User-Agent: IntelliJ HTTP Client/PyCharm 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-04-09T172814.200.json
+
+###
+
+GET http://localhost:5000/api/login_user
+User-Agent: IntelliJ HTTP Client/PyCharm 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-04-09T172747.200.json
+
+###
+
+POST http://localhost:5000/api/register
+User-Agent: IntelliJ HTTP Client/PyCharm 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-04-09T172353.200.json
+
+###
+
+POST http://localhost:5006/api/register
+User-Agent: IntelliJ HTTP Client/PyCharm 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-04-07T233701.200.json
+
+###
+
+POST http://localhost:5006/api/register
+User-Agent: IntelliJ HTTP Client/PyCharm 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-04-07T233650.200.json
+
+###
+
+POST http://localhost:5006/api/create_appointment
+User-Agent: IntelliJ HTTP Client/PyCharm 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-04-07T233205.200.json
+
+###
+
 POST http://localhost:5006/api/register
 User-Agent: IntelliJ HTTP Client/PyCharm 2024.3.5
 Accept-Encoding: br, deflate, gzip, x-gzip

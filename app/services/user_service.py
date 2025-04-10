@@ -1,7 +1,11 @@
 from typing import Union, List, Optional
 from bson import ObjectId
 from app.data.models.appointment import Appointment
+from app.data.models.gender import Gender
+from app.data.models.users.doctors.doctor import Doctor
+from app.data.models.users.doctors.doctor_profile import Doctor_Profile
 from app.data.models.users.user import User
+from app.data.models.users.user_profile import User_Profile
 from app.data.repository.appointment_repository import AppointmentRepository
 from app.data.repository.user_profile_repository import UserRepository
 from app.data.repository.doctor_profile_repository import DoctorRepository
@@ -13,6 +17,7 @@ from app.services.Dto.appointment_request import User_Appointment_Request
 from app.services.Dto.user_login_request import User_Login_Request
 from app.services.Dto.user_registration_request import User_Registration_Request
 from app.exceptions.user_not_found_exception import User_Not_Found_Exception
+from app.data.models.speciality import Speciality
 
 
 class UserService:
@@ -59,6 +64,7 @@ class UserService:
         user.email = request.user.email
         user.pass_word = request.user.pass_word
         user.user_profile = request.user.user_profile
+
         return UserRepository.save(user)
 
     @classmethod
@@ -72,16 +78,17 @@ class UserService:
             return user_login_details
 
     @classmethod
-    def create_appointment(cls, request : User_Appointment_Request) -> Appointment:
+    def create_appointment(cls, request : User_Appointment_Request) -> ObjectId:
         patient = UserRepository.find_by_id(request.appointment.patient.id)
         doctor = DoctorRepository.find_by_id(request.appointment.doctor.id)
-        return AppointmentRepository.save(request.appointment)
+        inserted_result = AppointmentRepository.save(request.appointment)
+        return inserted_result
 
     @classmethod
     def find_all_appointments(cls)-> List[Appointment]:
         result = AppointmentRepository.find_all()
         return result
 
-    @classmethod
-    def get_appointment(cls,appointment_id: Union[str, ObjectId]) -> Optional[Appointment]:
-        return AppointmentRepository.get_appointment_by_id(appointment_id)
+    # @classmethod
+    # def get_appointment(cls,appointment_id: ObjectId) -> Appointment:
+    #     return AppointmentRepository.get_appointment_by_id(appointment_id)

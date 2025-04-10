@@ -140,7 +140,6 @@ class UserRepository(ABC):
             print("Invalid email")
 
 
-
     @classmethod
     def verify_password(cls, hashed_password: str, input_password: str) -> bool:
 
